@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Gradient Generator</title>
+    <link rel="stylesheet" href="color.css" />
+  </head>
+  <body>
+    <button id="btn1">Button 1</button>
+    <button id="btn2">Button 2</button>
+
+    <script>
+      let randomHex = function generateRandomHexCode() {
+        const hexCharacters = "0123456789abcdef";
+        let hexCode = "#";
+        for (let i = 0; i < 6; i++) {
+          hexCode +=
+            hexCharacters[Math.floor(Math.random() * hexCharacters.length)];
+        }
+        return hexCode;
+      };
+
+      let btn1 = document.getElementById("btn1");
+      let btn2 = document.getElementById("btn2");
+
+      let color1 = randomHex();
+      let color2 = randomHex();
+
+      btn1.innerText = color1;
+      btn2.innerText = color2;
+
+      function updateBackground() {
+        document.body.style.background = `linear-gradient(135deg, ${color1}, ${color2})`;
+        console.log("Color 1:", color1);
+        console.log("Color 2:", color2);
+        console.log("Background:", document.body.style.background);
+      }
+
+      btn1.addEventListener("click", () => {
+        color1 = randomHex();
+        btn1.innerText = color1;
+        updateBackground();
+      });
+      btn2.addEventListener("click", () => {
+        color2 = randomHex();
+        btn2.innerText = color2;
+        updateBackground();
+      });
+
+      updateBackground();
+    </script>
+  </body>
+</html>
